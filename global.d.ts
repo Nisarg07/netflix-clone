@@ -1,8 +1,9 @@
-import type{ PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import type{MongoClient} from 'mongodb';
 
 declare global{
     namespace globalThis{
-        var prismadb = new PrismaClient();
+        var prismadb = global.prismadb || new PrismaClient();
     }
 }
+

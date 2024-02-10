@@ -2,10 +2,10 @@ import Input from "@/components/Input";
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Auth = () => {
   const router = useRouter();
@@ -26,10 +26,9 @@ const Auth = () => {
         email,
         password,
         redirect:false,
-        callbackUrl:'/'
+        callbackUrl:'/profiles'
       });
-      
-      router.push('/');
+      router.push('/profiles');
     }catch(error){
       console.log(error);
     }
@@ -75,7 +74,7 @@ const Auth = () => {
               value={email}
                />
                <Input
-              label="Passwprd"
+              label="Password"
               onChange={(ev:any)=>setPassword(ev.target.value)}
               id="password"
               type="password"
@@ -87,7 +86,7 @@ const Auth = () => {
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div 
-              onClick={()=>signIn('google',{callbackUrl:'/'})}
+              onClick={()=>signIn('google',{callbackUrl:'/profiles'})}
               className="
               w-10
               h-10
@@ -103,7 +102,7 @@ const Auth = () => {
                 <FcGoogle size={30}/>
               </div>
               <div
-              onClick={()=>signIn('github',{callbackUrl:'/'})}
+              onClick={()=>signIn('github',{callbackUrl:'/profiles'})}
               className="
               w-10
               h-10
